@@ -101,13 +101,15 @@ defmodule SaladUI.Pagination do
     """
   end
 
+  @link_attrs ~w(navigate patch href replace method csrf_token download hreflang referrerpolicy rel target type)
+
   @doc """
   Render pagination link
   """
   attr :"is-active", :boolean, default: false
   attr :size, :string, default: "icon"
   attr :class, :string, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: @link_attrs
   slot :inner_block, required: true
 
   def pagination_link(assigns) do
@@ -142,7 +144,7 @@ defmodule SaladUI.Pagination do
   Render next button
   """
   attr :class, :string, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: @link_attrs
 
   def pagination_next(assigns) do
     ~H"""
@@ -171,7 +173,7 @@ defmodule SaladUI.Pagination do
   Render previous button
   """
   attr :class, :string, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: @link_attrs
 
   def pagination_previous(assigns) do
     ~H"""
